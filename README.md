@@ -52,7 +52,7 @@ This project has the potential to significantly impact various fields by providi
 1. Download all the files or clone this repository on your system. To clone the repo, you can execute the following command from the shell:
 
 ``` sh
-git clone https://github.com/juangrau/DTC-ML-course.git
+git clone https://github.com/juangrau/ML-Capstone-Project-1.git
 ```
 
 2. Navigate to the project directory on your terminal.
@@ -70,7 +70,7 @@ The scope of this image is a web service based on Flask that allows to predict i
 To test it you can run the script predict-test.py like this:
 
 ``` sh
-python predict-test.py
+python predict.py
 ```
 
 Make sure you have the requests library installed. To install it you can run the follwing command on the terminal

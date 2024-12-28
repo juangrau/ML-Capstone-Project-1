@@ -4,8 +4,8 @@ from flask import jsonify
 import tflite_runtime.interpreter as tflite
 from keras_image_helper import create_preprocessor
 
-
-interpreter = tflite.Interpreter(model_path='clothing-model.tflite')
+model_path = '/app/terrain-classification.tflite'
+interpreter = tflite.Interpreter(model_path=model_path)
 interpreter.allocate_tensors()
 
 input_index = interpreter.get_input_details()[0]['index']
@@ -22,12 +22,16 @@ classes = ['AnnualCrop',
  'River',
  'SeaLake']
 
-app = Flask('terrain-classifier')
+app = Flask('terrain')
 
 @app.route('/predict', methods=['POST'])
-def predict(url):
+def predict():
+
+    data = request.get_json()
+    img_url = data['url'] 
+    print(img_url)
     preprocessor = create_preprocessor('xception', target_size=(150, 150))
-    X = preprocessor.from_url(url)
+    X = preprocessor.from_url(img_url)
     interpreter.set_tensor(input_index, X)
     interpreter.invoke()
     preds = interpreter.get_tensor(output_index)

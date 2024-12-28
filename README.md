@@ -48,3 +48,33 @@ This project has the potential to significantly impact various fields by providi
 
 ### How to run this project
 
+
+1. Download all the files or clone this repository on your system. To clone the repo, you can execute the following command from the shell:
+
+``` sh
+git clone https://github.com/juangrau/DTC-ML-course.git
+```
+
+2. Navigate to the project directory on your terminal.
+
+3. build and run the docker image:
+
+``` sh
+docker build -t go-marketing .
+
+docker run -it -p 9696:9696 go-marketing:latest
+```
+
+The scope of this image is a web service based on Flask that allows to predict if a tele-marketing campaign will be successful for a customer of a bank.
+
+To test it you can run the script predict-test.py like this:
+
+``` sh
+python predict-test.py
+```
+
+Make sure you have the requests library installed. To install it you can run the follwing command on the terminal
+
+``` sh
+pip install requests
+```

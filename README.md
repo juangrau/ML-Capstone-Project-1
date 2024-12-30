@@ -45,6 +45,17 @@ This project has the potential to significantly impact various fields by providi
 
 ### Availabe files on the repository
 
+| File | Description |
+| ----------- | ----------- |
+| notebook.ipynb | Jupyter Notebook where data loading and Model tunning was performed |
+| predict.py | Python script that runs the project as a Flask service. |
+| request.py | Python script that submit a terrain image to the predict service and return if the terrain class as the result of the classification model. The script includes links to different images to try the model |
+| requirements.txt | All the python libraries that are needed to run the service. It is used by the Docker container to make sure all the modules are installed |
+| model_vf_24_0.958.h5.keras | Convolutional Neural Network model exported from the Jupyter Notebook after training and tunning was performed |
+| terrain-classification.tflite | Same model as before but converted to TensorFlow Lite |
+| tf-lite_model_conversion.ipynb | Jupyter Notebook where conversion from original model to Tensorflow Lite was performed and tested |
+| train.ipynb / train.py | Jupyter Notebook and python script with all the steps to train the model. Both files were included as depending on the environment available it would be easier to load a notebook on something like to Kaggle or Google Colab to have access to VMs with GPUs |
+| serverless | Directory with the files created to deploy the model on AWS Lambda Function | 
 
 ### How to run this project
 
@@ -60,17 +71,17 @@ git clone https://github.com/juangrau/ML-Capstone-Project-1.git
 3. build and run the docker image:
 
 ``` sh
-docker build -t go-marketing .
+docker build -t terrain-classifier .
 
-docker run -it -p 9696:9696 go-marketing:latest
+docker run -it -p 9696:9696 terrain-classifier:latest
 ```
 
 The scope of this image is a web service based on Flask that allows to predict if a tele-marketing campaign will be successful for a customer of a bank.
 
-To test it you can run the script predict-test.py like this:
+To test it you can run the script request.py like this:
 
 ``` sh
-python predict.py
+python requst.py
 ```
 
 Make sure you have the requests library installed. To install it you can run the follwing command on the terminal
@@ -78,3 +89,40 @@ Make sure you have the requests library installed. To install it you can run the
 ``` sh
 pip install requests
 ```
+
+### AWS Lambda Deployment
+
+As described on the table above there the **serverless** directory contains all the files required to deploy the project as a AWS Lambda function.
+
+The lambda function was deployed using a Docker container.
+
+To test this container you can follow these steps:
+
+1. Navigate to the project directory on your terminal.
+
+2. build and run the docker image:
+
+``` sh
+docker build -t terrain-classifier-imageaws .
+
+docker run -it -p 8080:8080 terrain-classifier-imageaws:latest
+```
+
+To test it you can run the script test.py like this:
+
+``` sh
+python test.py
+```
+
+You can find below some screen captures of AWS console with the Docker container upladed on a repository on AWS ECR
+
+![Docker container on AWS ECR](images/ecr.jpg)
+
+Then, the following image is a screen capture of the lambda function defined based on the Docker container.
+
+![AWS Lambda Function](images/lambda_fuction.jpg)
+
+Finally, the following image is a screen capture of the test result of this lambda function.
+
+![AWS Lambda Function - Test result](images/test-result.jpg)
+

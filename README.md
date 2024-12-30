@@ -98,7 +98,7 @@ The lambda function was deployed using a Docker container.
 
 To test this container you can follow these steps:
 
-1. Navigate to the project directory on your terminal.
+1. Navigate to the serverless directory located into the project folder on your terminal.
 
 2. build and run the docker image:
 

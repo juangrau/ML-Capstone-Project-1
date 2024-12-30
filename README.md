@@ -120,7 +120,7 @@ You can find below some screen captures of AWS console with the Docker container
 
 Then, the following image is a screen capture of the lambda function defined based on the Docker container.
 
-![AWS Lambda Function](serverless/images/lambda_fuction.jpg)
+![AWS Lambda Function](serverless/images/lambda_function.jpg)
 
 Finally, the following image is a screen capture of the test result of this lambda function.
 

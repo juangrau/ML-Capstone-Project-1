@@ -116,7 +116,7 @@ python test.py
 
 You can find below some screen captures of AWS console with the Docker container upladed on a repository on AWS ECR
 
-![Docker container on AWS ECR](images/ecr.jpg)
+![Docker container on AWS ECR](serverless/images/ecr.jpg)
 
 Then, the following image is a screen capture of the lambda function defined based on the Docker container.
 
